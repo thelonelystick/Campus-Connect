@@ -1,0 +1,9 @@
+import React from 'react';
+import { Search, X, CheckCircle2, AlertCircle, Info } from 'lucide-react';
+export function Button({children,variant='primary',...props}){return <button className={`btn btn-${variant}`} {...props}>{children}</button>}
+export function Badge({children,tone=''}){return <span className={`badge ${tone}`}>{children}</span>}
+export function SearchBox({value,onChange,placeholder='Search...'}){return <label className="search-box"><Search size={17}/><input value={value} onChange={e=>onChange(e.target.value)} placeholder={placeholder}/>{value&&<button aria-label="Clear search" onClick={()=>onChange('')} type="button"><X size={15}/></button>}</label>}
+export function EmptyState({title='Nothing here yet',text='Try changing your search or filters.'}){return <div className="empty-state"><div className="empty-icon"><Search size={22}/></div><h3>{title}</h3><p>{text}</p></div>}
+export function Toast({toast,onClose}){if(!toast)return null;const Icon=toast.type==='error'?AlertCircle:toast.type==='success'?CheckCircle2:Info;return <div className={`toast ${toast.type||''}`} role="status"><Icon size={18}/><span>{toast.message}</span><button onClick={onClose} aria-label="Dismiss notification"><X size={16}/></button></div>}
+export function PageHeading({eyebrow,title,description,action}){return <div className="page-heading"><div><div className="eyebrow">{eyebrow}</div><h1>{title}</h1>{description&&<p>{description}</p>}</div>{action&&<div className="heading-action">{action}</div>}</div>}
+export function StatCard({icon:Icon,label,value,detail,tone='blue'}){return <div className="stat-card"><div className={`stat-icon ${tone}`}><Icon size={20}/></div><div className="stat-label">{label}</div><div className="stat-value">{value}</div>{detail&&<div className="stat-detail">{detail}</div>}</div>}
